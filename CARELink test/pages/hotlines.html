@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency Hotlines - CARELink</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  (function () {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+    } catch (_) {}
+  })();
+</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <div class="theme-scene" aria-hidden="true"></div>
+<button class="theme-toggle" type="button" onclick="toggleTheme()" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+  <span class="theme-icon">&#127769;</span>
+</button>
+
+<header class="user-header">
+  <nav class="dashboard-nav" role="navigation" aria-label="Quick access">
+    <a href="dashboard.html" class="nav-btn primary-btn">🏠 Back to Dashboard</a>
+  </nav>
+  <h1>Emergency Hotlines</h1>
+</header>
+
+<main>
+  <div class="dashboard-grid">
+    <div class="card">
+      <h3>PNP Emergency (Police)</h3>
+      <a class="btn-link" href="tel:166">Call 166</a>
+      <p class="card-subtext">National Police Emergency</p>
+    </div>
+
+    <div class="card">
+      <h3>Baguio General Hospital</h3>
+      <a class="btn-link" href="tel:0744424216">Call (074) 442-4216</a>
+      <p class="card-subtext">Main hospital in Baguio City</p>
+    </div>
+
+    <div class="card">
+      <h3>Fire Department (BFP)</h3>
+      <a class="btn-link" href="tel:160">Call 160</a>
+      <p class="card-subtext">Bureau of Fire Protection</p>
+    </div>
+
+    <div class="card">
+      <h3>Mental Health Crisis Hotline</h3>
+      <a class="btn-link" href="tel:1553">Call 1553</a>
+      <p class="card-subtext">National Mental Health Crisis Line</p>
+    </div>
+
+    <div class="card">
+      <h3>Saint Louis University Hospital (SLU)</h3>
+      <a class="btn-link" href="tel:0744424888">Call (074) 442-4888</a>
+      <p class="card-subtext">SLU hospital in Baguio City</p>
+    </div>
+
+    <div class="card">
+      <h3>Benguet General Hospital</h3>
+      <a class="btn-link" href="tel:0744443939">Call (074) 444-3939</a>
+      <p class="card-subtext">Provincial hospital in La Trinidad</p>
+    </div>
+
+    <div class="card">
+      <h3>Emergency Medical Services</h3>
+      <a class="btn-link" href="tel:911">Call 911</a>
+      <p class="card-subtext">Emergency hotline (all services)</p>
+    </div>
+
+    <div class="card">
+      <h3>Pines City Medical Center</h3>
+      <a class="btn-link" href="tel:0744438801">Call (074) 443-8801</a>
+      <p class="card-subtext">Medical facility in Baguio</p>
+    </div>
+
+    <div class="card">
+      <h3>In Touch Support Lines</h3>
+      <a class="btn-link" href="tel:+6328044673">Call (02) 804-4673</a>
+      <p class="card-subtext">Counseling and emotional support</p>
+    </div>
+
+    <div class="card">
+      <h3>Baguio City EMS</h3>
+      <a class="btn-link" href="tel:0744426656">Call (074) 442-6656</a>
+      <p class="card-subtext">City emergency services</p>
+    </div>
+  </div>
+</main>
+
+<script src="../script.js"></script>
+</body>
+
+</html>

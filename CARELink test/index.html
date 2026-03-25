@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CARELink</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  (function () {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+    } catch (_) {}
+  })();
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="theme-scene" aria-hidden="true"></div>
+<button class="theme-toggle" type="button" onclick="toggleTheme()" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+  <span class="theme-icon">&#127769;</span>
+</button>
+
+
+
+<button class="crisis" type="button" onclick="location.href='pages/hotlines.html'">
+  &#128680; Need Immediate Help
+</button>
+
+<main class="login-container">
+  <h1>CARELink</h1>
+  <p>Connect &bull; Access &bull; Recover &bull; Empower</p>
+
+  <div class="login-faces" id="loginFaces" aria-hidden="true">
+    <span class="login-face-emoji">😊</span>
+    <span class="login-face-emoji">😢</span>
+    <span class="login-face-emoji">😰</span>
+    <span class="login-face-emoji">😴</span>
+    <span class="login-face-emoji">🤩</span>
+  </div> REPLACE
+
+  <div id="authMessage" class="form-message" role="alert" aria-live="polite" hidden></div>
+
+  <section id="loginForm">
+    <h2>Login</h2>
+    <form onsubmit="login(); return false;">
+      <label class="sr-only" for="email">SLU Email</label>
+      <input id="email" type="email" inputmode="email" autocomplete="username" placeholder="Enter SLU Email (name@slu.edu.ph)" required>
+
+      <label class="sr-only" for="password">Password</label>
+      <input id="password" type="password" autocomplete="current-password" placeholder="Password" required>
+
+      <button type="submit">Continue</button>
+      <p>New user? <button class="link-btn" type="button" onclick="toggleForm()">Create Account</button></p>
+    </form>
+  </section>
+
+  <section id="createForm" style="display:none;">
+    <h2>Create Account</h2>
+    <form onsubmit="createAccount(); return false;">
+      <label class="sr-only" for="createEmail">SLU Email</label>
+      <input id="createEmail" type="email" inputmode="email" autocomplete="username" placeholder="Enter SLU Email (name@slu.edu.ph)" required>
+
+      <label class="sr-only" for="createPassword">Create Password</label>
+      <input id="createPassword" type="password" autocomplete="new-password" minlength="6" placeholder="Create Password" required>
+
+      <label class="sr-only" for="confirmPassword">Confirm Password</label>
+      <input id="confirmPassword" type="password" autocomplete="new-password" minlength="6" placeholder="Confirm Password" required>
+
+      <button type="submit">Create Account</button>
+      <p><button class="link-btn" type="button" onclick="toggleForm()">Back to Login</button></p>
+    </form>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+
+</html>

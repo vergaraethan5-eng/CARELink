@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CARELink Dashboard</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  (function () {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+    } catch (_) {}
+  })();
+</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <div class="theme-scene" aria-hidden="true"></div>
+<button class="theme-toggle" type="button" onclick="toggleTheme()" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+  <span class="theme-icon">&#127769;</span>
+</button>
+
+<header class="user-header">
+  <h1>CARELink Dashboard</h1>
+  <div class="user-info">
+    <span id="userEmail">Welcome!</span>
+    <button class="logout-btn" type="button" onclick="logout()">Logout</button>
+  </div>
+</header>
+
+<!-- New Navigation Bar -->
+<nav class="dashboard-nav" role="navigation" aria-label="Quick access to resources">
+  <a href="resources.html" class="nav-btn primary-btn" aria-label="Mental Health Resources">
+    🏥 Mental Health Resources
+  </a>
+  <a href="hotlines.html" class="nav-btn primary-btn" aria-label="Emergency Hotlines">
+    🚨 Emergency Hotlines
+  </a>
+</nav>
+
+<main>
+  <h2>How are you feeling today?</h2>
+  <p class="hint-text">Select one or more moods</p>
+
+  <div class="mood-grid" id="moodGrid">
+    <div class="mood-card" data-mood="excited" onclick="toggleMoodSelection('excited', event)">
+      <span class="mood-emoji" aria-hidden="true">&#128516;</span>
+      <p>Excited</p>
+    </div>
+
+    <div class="mood-card" data-mood="happy" onclick="toggleMoodSelection('happy', event)">
+      <span class="mood-emoji" aria-hidden="true">&#128522;</span>
+      <p>Happy</p>
+    </div>
+
+    <div class="mood-card" data-mood="sad" onclick="toggleMoodSelection('sad', event)">
+      <span class="mood-emoji" aria-hidden="true">&#128546;</span>
+      <p>Sad</p>
+    </div>
+
+    <div class="mood-card" data-mood="stressed" onclick="toggleMoodSelection('stressed', event)">
+      <span class="mood-emoji" aria-hidden="true">&#128560;</span>
+      <p>Stressed</p>
+    </div>
+
+    <div class="mood-card" data-mood="drained" onclick="toggleMoodSelection('drained', event)">
+      <span class="mood-emoji" aria-hidden="true">&#128564;</span>
+      <p>Drained</p>
+    </div>
+  </div>
+
+  <div class="mood-feedback" id="moodFeedback" aria-live="polite"></div>
+
+  <div class="mood-dashboard-grid">
+    <div class="card moods-card">
+<h3>🏷️ Your Recent Moods</h3>
+      <p class="hint-text">Track your emotional journey</p>
+<div class="face-container-enhanced" id="faceContainer" aria-label="Your recent mood badges">
+        <div class="mood-badges" id="moodBadges" aria-live="polite">
+          <div class="mood-badge-empty">🎟️ Select moods to see your badges here</div>
+        </div>
+        <button id="clearBadgesBtn" class="reset-btn" type="button" onclick="clearMoodBadges()">🗑️ Reset Badges</button>
+      </div>
+    </div>
+
+    <div class="card stats-card">
+      <h3>&#128202; Mood Statistics</h3>
+      <p class="hint-text">Your mood distribution</p>
+      <div class="mood-pie-chart-container">
+        <canvas id="moodPieChart" width="300" height="300"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <section class="mood-stats-legend-container" aria-label="Mood statistics legend">
+    <div class="mood-stats-legend">
+      <div class="stat-legend-item">
+        <span class="stat-color" style="background: #FF4757;"></span>
+        <span>&#128516; Excited: <strong id="stat-excited">0</strong></span>
+      </div>
+      <div class="stat-legend-item">
+        <span class="stat-color" style="background: #FFB037;"></span>
+        <span>&#128522; Happy: <strong id="stat-happy">0</strong></span>
+      </div>
+      <div class="stat-legend-item">
+        <span class="stat-color" style="background: #54A0FF;"></span>
+        <span>&#128546; Sad: <strong id="stat-sad">0</strong></span>
+      </div>
+      <div class="stat-legend-item">
+        <span class="stat-color" style="background: #EE5A6F;"></span>
+        <span>&#128560; Stressed: <strong id="stat-stressed">0</strong></span>
+      </div>
+      <div class="stat-legend-item">
+        <span class="stat-color" style="background: #A55EEA;"></span>
+        <span>&#128564; Drained: <strong id="stat-drained">0</strong></span>
+      </div>
+    </div>
+    <button class="clear-stats-btn" type="button" onclick="clearMoodStatistics()">&#128260; Clear Statistics</button>
+  </section>
+
+  <section class="factors-section" id="factorsSection" style="display: none;">
+<h3>&#128173; Helpful Context</h3>
+    <p class="hint-text">Select factors that apply, or add your own</p>
+    <div class="factors-grid" id="factorsGrid"></div>
+
+    <div class="custom-factor-input">
+      <input type="text" id="customFactorInput" placeholder="Add a custom factor..." maxlength="50">
+      <button type="button" onclick="addCustomFactor()">Add</button>
+    </div>
+
+    <div class="selected-factors" id="selectedFactors">
+      <strong>Selected:</strong>
+      <div id="selectedFactorsList" class="tag-list"></div>
+    </div>
+  </section>
+
+  <section class="mood-notes-section" id="notesSection">
+    <h3>&#128173; Additional thoughts?</h3>
+    <div class="notes-input-area">
+      <input type="text" id="moodNote" placeholder="Share in 5-10 words what's on your mind..." maxlength="50">
+      <div class="word-counter" id="wordCounter">0 words / 10 max</div>
+    </div>
+
+    <div class="notes-button-group">
+      <button type="button" onclick="addMoodNote()">Add Note</button>
+      <button class="clear-btn" type="button" onclick="clearAllNotes()">Clear Board</button>
+    </div>
+  </section>
+
+  <section id="activityRecommendations" class="activity-recommendations" style="display: none;">
+    <h3>&#127919; Recommended Activities For You</h3>
+    <p class="hint-text">Select activities that resonate with you</p>
+    <div class="activities-grid" id="activitiesGrid"></div>
+    <div class="recommendations-actions">
+      <button class="primary-btn" type="button" onclick="submitActivitySelection()">Continue to Dashboard</button>
+    </div>
+  </section>
+
+  <div id="stickyNotesBoard" class="sticky-notes-board">
+    <div class="sticky-note-empty">&#10024; Your thoughts will appear as sticky notes</div>
+  </div>
+
+
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../script.js"></script>
+<script>
+  // Display user on dashboard load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', displayUser);
+  } else {
+    displayUser();
+  }
+</script>
+</body>
+
+</html>

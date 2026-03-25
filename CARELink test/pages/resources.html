@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources - CARELink</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  (function () {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+    } catch (_) {}
+  })();
+</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <div class="theme-scene" aria-hidden="true"></div>
+<button class="theme-toggle" type="button" onclick="toggleTheme()" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+  <span class="theme-icon">&#127769;</span>
+</button>
+
+<header class="user-header">
+  <nav class="dashboard-nav" role="navigation" aria-label="Quick access">
+    <a href="dashboard.html" class="nav-btn primary-btn">🏠 Back to Dashboard</a>
+  </nav>
+  <h1>Mental Health Resources</h1>
+</header>
+
+<main>
+  <div class="dashboard-grid">
+    <div class="card">
+      <h3>National Center for Mental Health (NCMH)</h3>
+      <p>Philippines' leading mental health facility providing services and information.</p>
+      <button type="button" onclick="openSite('https://ncmh.gov.ph')">Visit Website</button>
+    </div>
+
+    <div class="card">
+      <h3>In Touch Support Lines</h3>
+      <p>Free emotional first aid and counseling support for Filipinos. Hotline: (02) 804-4673</p>
+      <button type="button" onclick="openSite('https://www.intouchlines.ph')">Learn More</button>
+    </div>
+
+    <div class="card">
+      <h3>Mentally Me Philippines</h3>
+      <p>Mental health awareness and support community for young Filipinos.</p>
+      <button type="button" onclick="openSite('https://www.mentallymefilipinas.org')">Visit Site</button>
+    </div>
+
+    <div class="card">
+      <h3>BayanMuna Mental Health Support</h3>
+      <p>Community-based mental health resources and counseling information.</p>
+      <button type="button" onclick="openSite('https://bayanmuna.org.ph')">Learn More</button>
+    </div>
+
+    <div class="card">
+      <h3>Anxiety Counseling Foundation of the Philippines</h3>
+      <p>Professional counseling and anxiety management resources.</p>
+      <button type="button" onclick="openSite('https://ansietycounselingfoundation.org.ph')">Visit Site</button>
+    </div>
+
+    <div class="card">
+      <h3>Lifeline Foundation Philippines</h3>
+      <p>Crisis intervention and suicide prevention services for those in distress.</p>
+      <button type="button" onclick="openSite('https://lifelineph.org')">Learn More</button>
+    </div>
+
+    <div class="card">
+      <h3>WHO Mental Health Resources</h3>
+      <p>Global mental health information and guidelines from the World Health Organization.</p>
+      <button type="button" onclick="openSite('https://www.who.int/mental_health')">Explore Resources</button>
+    </div>
+
+    <div class="card">
+      <h3>MindWell Magazine</h3>
+      <p>Articles on mental wellness, anxiety management, and healthy coping strategies.</p>
+      <button type="button" onclick="openSite('https://mindwellsg.com')">Read Articles</button>
+    </div>
+  </div>
+</main>
+
+<script src="../script.js"></script>
+</body>
+
+</html>
